@@ -48,8 +48,6 @@ SWEP.Primary = {
 	TracerName = "Tracer"
 }
 
-SWEP.Zoom = 1.3
-
 function SWEP:SetupDataTables()
 	BaseClass.SetupDataTables(self)
 

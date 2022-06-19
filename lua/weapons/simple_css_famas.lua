@@ -49,8 +49,6 @@ SWEP.Primary = {
 	TracerName = "Tracer"
 }
 
-SWEP.Zoom = 1.2
-
 function SWEP:AlternateAttack()
 	self.Primary.Automatic = false
 

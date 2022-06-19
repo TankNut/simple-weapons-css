@@ -45,8 +45,6 @@ SWEP.Primary = {
 	TracerName = ""
 }
 
-SWEP.Zoom = 1.2
-
 function SWEP:FireAnimationEvent(_, _, event)
 	if event == 5001 or event == 5003 then
 		return true

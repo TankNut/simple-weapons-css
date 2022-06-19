@@ -47,6 +47,5 @@ SWEP.Primary = {
 	TracerName = "Tracer"
 }
 
-SWEP.Zoom = 2
-SWEP.ScopeZoom = 6
+SWEP.ScopeZoom = {2, 6}
 SWEP.ScopeSound = "Default.Zoom"

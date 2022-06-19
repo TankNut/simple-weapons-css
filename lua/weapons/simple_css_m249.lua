@@ -46,5 +46,3 @@ SWEP.Primary = {
 	Sound = "Weapon_M249.Single",
 	TracerName = "Tracer"
 }
-
-SWEP.Zoom = 1.2
