@@ -50,5 +50,5 @@ SWEP.ScopeZoom = 3
 SWEP.ScopeSound = "Default.Zoom"
 
 function SWEP:GetDelay()
-	return self:GetInScope() and 60 / 429 or 60 / 666
+	return self:GetScopeIndex() > 0 and 60 / 429 or 60 / 666
 end
