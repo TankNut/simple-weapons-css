@@ -1,7 +1,5 @@
 AddCSLuaFile()
 
-simple_weapons.Include("Helpers")
-
 SWEP.Base = "simple_base_scoped"
 
 SWEP.PrintName = "SG 552"

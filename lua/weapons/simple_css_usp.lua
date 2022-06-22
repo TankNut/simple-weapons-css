@@ -2,8 +2,6 @@ AddCSLuaFile()
 
 DEFINE_BASECLASS("simple_base")
 
-simple_weapons.Include("Helpers")
-
 SWEP.Base = "simple_base"
 
 SWEP.PrintName = "USP-S"
