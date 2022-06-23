@@ -35,9 +35,9 @@ SWEP.Primary = {
 	BurstEndDelay = 0.4,
 
 	Range = 750,
+	Accuracy = 12,
 
-	Accuracy = 750,
-	AccuracyRef = 12,
+	RangeModifier = 0.85,
 
 	Recoil = {
 		MinAng = Angle(0.9, -0.3, 0),

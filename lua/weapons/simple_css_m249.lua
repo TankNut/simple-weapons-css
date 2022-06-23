@@ -32,10 +32,10 @@ SWEP.Primary = {
 	Damage = 18,
 	Delay = 60 / 750,
 
-	Range = 1400,
+	Range = 700,
+	Accuracy = 12,
 
-	Accuracy = 700,
-	AccuracyRef = 12,
+	RangeModifier = 0.97,
 
 	Recoil = {
 		MinAng = Angle(0.5, -0.4, 0),
