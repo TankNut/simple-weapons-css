@@ -18,7 +18,7 @@ SWEP.ViewModelTargetFOV = 54
 SWEP.ViewModel = Model("models/weapons/cstrike/c_smg_mp5.mdl")
 SWEP.WorldModel = Model("models/weapons/w_smg_mp5.mdl")
 
-SWEP.HoldType = "ar2"
+SWEP.HoldType = "smg"
 SWEP.LowerHoldType = "passive"
 
 SWEP.Firemode = -1
