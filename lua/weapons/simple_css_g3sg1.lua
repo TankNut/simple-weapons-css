@@ -36,6 +36,9 @@ SWEP.Primary = {
 	Range = 3000,
 	Accuracy = 12,
 
+	UnscopedRange = 200,
+	UnscopedAccuracy = 12,
+
 	RangeModifier = 0.98,
 
 	Recoil = {
