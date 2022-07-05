@@ -62,7 +62,6 @@ function EFFECT:Init(data)
 				particle:SetEndAlpha(0)
 				particle:SetRoll(math.Rand(-6, 6))
 				particle:SetRollDelta(math.Rand(-ROTATION_SPEED, ROTATION_SPEED))
-				particle:SetColor(color_white)
 
 				particle:SetLighting(false)
 
@@ -123,7 +122,7 @@ function EFFECT:Think()
 
 		local color = minColor + (maxColor - minColor) * (v.ColorRand / 255.1)
 
-		color = (color + Vector(0.5, 0.5, 0.5)) / 2
+		color = (color + Vector(0.25, 0.25, 0.25)) / 2
 
 		v:SetColor(color.x * 255, color.y * 255, color.z * 255)
 	end
