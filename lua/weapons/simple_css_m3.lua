@@ -25,6 +25,7 @@ SWEP.Firemode = 0
 
 SWEP.Primary = {
 	Ammo = "Buckshot",
+	Cost = 1,
 
 	ClipSize = 7,
 	DefaultClip = 7,

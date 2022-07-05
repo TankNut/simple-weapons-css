@@ -25,6 +25,7 @@ SWEP.Firemode = -1
 
 SWEP.Primary = {
 	Ammo = "XBowBolt",
+	Cost = 1,
 
 	ClipSize = 20,
 	DefaultClip = 20,
