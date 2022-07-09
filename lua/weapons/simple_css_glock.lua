@@ -57,3 +57,11 @@ function SWEP:AlternateAttack()
 
 	self:EmitSound("Weapon_SMG1.Special1")
 end
+
+SWEP.NPCData = {
+	Burst = {3, 3},
+	Delay = SWEP.Primary.BurstDelay,
+	Rest = {SWEP.Primary.BurstEndDelay, SWEP.Primary.BurstEndDelay * 3}
+}
+
+list.Add("NPCUsableWeapons", {class = "simple_css_glock", title = "Simple Weapons: " .. SWEP.PrintName})

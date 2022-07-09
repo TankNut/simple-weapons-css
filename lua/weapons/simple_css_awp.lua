@@ -1,5 +1,7 @@
 AddCSLuaFile()
 
+DEFINE_BASECLASS("simple_base_scoped")
+
 SWEP.Base = "simple_base_scoped"
 
 SWEP.PrintName = "AWP"
@@ -30,7 +32,7 @@ SWEP.Primary = {
 	DefaultClip = 10,
 
 	Damage = 85,
-	Delay = -1,
+	Delay = 1.5,
 
 	Range = 4000,
 	Accuracy = 12,
@@ -53,3 +55,17 @@ SWEP.Primary = {
 
 SWEP.ScopeZoom = {2.25, 9}
 SWEP.ScopeSound = "Default.Zoom"
+
+SWEP.NPCData = {
+	Burst = {1, 1},
+	Delay = SWEP.Primary.Delay,
+	Rest = {2, 4}
+}
+
+list.Add("NPCUsableWeapons", {class = "simple_css_awp", title = "Simple Weapons: " .. SWEP.PrintName})
+
+if SERVER then
+	function SWEP:GetNPCBulletSpread(prof)
+		return BaseClass.GetNPCBulletSpread(self, prof) * 0.5
+	end
+end

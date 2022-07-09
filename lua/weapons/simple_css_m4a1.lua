@@ -49,6 +49,14 @@ SWEP.Primary = {
 	TracerName = "Tracer"
 }
 
+SWEP.NPCData = {
+	Burst = {2, 5},
+	Delay = SWEP.Primary.Delay,
+	Rest = {SWEP.Primary.Delay * 2, SWEP.Primary.Delay * 3}
+}
+
+list.Add("NPCUsableWeapons", {class = "simple_css_m4a1", title = "Simple Weapons: " .. SWEP.PrintName})
+
 function SWEP:SetupDataTables()
 	BaseClass.SetupDataTables(self)
 

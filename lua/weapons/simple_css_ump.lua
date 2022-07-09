@@ -47,3 +47,11 @@ SWEP.Primary = {
 	Sound = "Weapon_UMP45.Single",
 	TracerName = "Tracer"
 }
+
+SWEP.NPCData = {
+	Burst = {3, 6},
+	Delay = SWEP.Primary.Delay,
+	Rest = {SWEP.Primary.Delay * 3, SWEP.Primary.Delay * 5}
+}
+
+list.Add("NPCUsableWeapons", {class = "simple_css_ump", title = "Simple Weapons: " .. SWEP.PrintName})

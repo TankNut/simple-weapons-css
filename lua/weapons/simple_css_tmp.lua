@@ -46,6 +46,14 @@ SWEP.Primary = {
 	TracerName = ""
 }
 
+SWEP.NPCData = {
+	Burst = {3, 9},
+	Delay = SWEP.Primary.Delay,
+	Rest = {SWEP.Primary.Delay * 3, SWEP.Primary.Delay * 5}
+}
+
+list.Add("NPCUsableWeapons", {class = "simple_css_tmp", title = "Simple Weapons: " .. SWEP.PrintName})
+
 function SWEP:FireAnimationEvent(_, _, event)
 	if event == 5001 or event == 5003 then
 		return true

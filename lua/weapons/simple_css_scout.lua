@@ -30,7 +30,7 @@ SWEP.Primary = {
 	DefaultClip = 10,
 
 	Damage = 55,
-	Delay = -1,
+	Delay = 1.25,
 
 	Range = 4000,
 	Accuracy = 12,
@@ -53,3 +53,17 @@ SWEP.Primary = {
 
 SWEP.ScopeZoom = {2.25, 9}
 SWEP.ScopeSound = "Default.Zoom"
+
+SWEP.NPCData = {
+	Burst = {1, 1},
+	Delay = 1.4,
+	Rest = {1, 3}
+}
+
+list.Add("NPCUsableWeapons", {class = "simple_css_scout", title = "Simple Weapons: " .. SWEP.PrintName})
+
+if SERVER then
+	function SWEP:GetNPCBulletSpread(prof)
+		return BaseClass.GetNPCBulletSpread(self, prof) * 0.5
+	end
+end
