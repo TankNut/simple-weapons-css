@@ -53,7 +53,7 @@ SWEP.ScopeSound = "Default.Zoom"
 SWEP.NPCData = {
 	Burst = {3, 5},
 	Delay = 60 / 429,
-	Rest = {SWEP.Primary.Delay * 3, SWEP.Primary.Delay * 5}
+	Rest = {60 / 429 * 3, 60 / 429 * 5}
 }
 
 list.Add("NPCUsableWeapons", {class = "simple_css_sg552", title = "Simple Weapons: " .. SWEP.PrintName})
