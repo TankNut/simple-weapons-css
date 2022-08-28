@@ -50,7 +50,7 @@ SWEP.Primary = {
 	TracerName = "Tracer"
 }
 
-function SWEP:AlternateAttack()
+function SWEP:AltFire()
 	self.Primary.Automatic = false
 
 	self:SetFiremode(self:GetFiremode() == 0 and 3 or 0)

@@ -63,15 +63,11 @@ function SWEP:SetupDataTables()
 	self:AddNetworkVar("Bool", "Suppressed")
 end
 
-function SWEP:CanAlternateAttack()
-	if self:IsReloading() then
-		return false
-	end
-
-	return true
+function SWEP:CanAltFire()
+	return not self:IsReloading()
 end
 
-function SWEP:AlternateAttack()
+function SWEP:AltFire()
 	self.Primary.Automatic = false
 
 	local suppressed = not self:GetSuppressed()
@@ -82,7 +78,7 @@ function SWEP:AlternateAttack()
 
 	local duration = CurTime() + self:SequenceDuration()
 
-	self:SetNextPrimaryFire(duration)
+	self:SetNextFire(duration)
 	self:SetNextIdle(duration)
 end
 
