@@ -50,6 +50,8 @@ SWEP.Primary = {
 SWEP.ScopeZoom = 3
 SWEP.ScopeSound = "Default.Zoom"
 
+SWEP.UseScope = false
+
 SWEP.NPCData = {
 	Burst = {3, 5},
 	Delay = 60 / 429,
