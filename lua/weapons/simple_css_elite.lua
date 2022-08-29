@@ -50,12 +50,6 @@ SWEP.Primary = {
 	TracerName = ""
 }
 
-SWEP.NPCData = {
-	Burst = {2, 3},
-	Delay = SWEP.Primary.Delay,
-	Rest = {SWEP.Primary.Delay * 2, SWEP.Primary.Delay * 3}
-}
-
 function SWEP:SetupDataTables()
 	BaseClass.SetupDataTables(self)
 
