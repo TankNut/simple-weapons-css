@@ -1,5 +1,7 @@
 AddCSLuaFile()
 
+DEFINE_BASECLASS("simple_base_scoped")
+
 SWEP.Base = "simple_base_scoped"
 
 SWEP.PrintName = "Steyr Scout"
