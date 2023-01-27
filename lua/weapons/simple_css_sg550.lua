@@ -61,3 +61,6 @@ SWEP.NPCData = {
 }
 
 list.Add("NPCUsableWeapons", {class = "simple_css_sg550", title = "Simple Weapons: " .. SWEP.PrintName})
+
+-- Dynamic Weapon Reverb support
+SWEP.dwr_customAmmoType = "smg1"

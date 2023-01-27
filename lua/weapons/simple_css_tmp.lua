@@ -54,6 +54,9 @@ SWEP.NPCData = {
 
 list.Add("NPCUsableWeapons", {class = "simple_css_tmp", title = "Simple Weapons: " .. SWEP.PrintName})
 
+-- Dynamic Weapon Reverb support
+SWEP.dwr_customIsSuppressed = true
+
 function SWEP:FireAnimationEvent(_, _, event)
 	if event == 5001 or event == 5003 then
 		return true

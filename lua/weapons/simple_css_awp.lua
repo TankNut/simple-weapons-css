@@ -64,6 +64,9 @@ SWEP.NPCData = {
 
 list.Add("NPCUsableWeapons", {class = "simple_css_awp", title = "Simple Weapons: " .. SWEP.PrintName})
 
+-- Dynamic Weapon Reverb support
+SWEP.dwr_customAmmoType = "ar2"
+
 if SERVER then
 	function SWEP:GetNPCBulletSpread(prof)
 		return BaseClass.GetNPCBulletSpread(self, prof) * 0.5
