@@ -78,6 +78,10 @@ function SWEP:AltFire()
 	-- Dynamic Weapon Reverb support
 	self.dwr_customIsSuppressed = self:GetSuppressed()
 
+	if game.SinglePlayer() then
+		self:CallOnClient("UpdateReverb", tostring(suppressed))
+	end
+
 	local duration = CurTime() + self:SequenceDuration()
 
 	self:SetNextFire(duration)
