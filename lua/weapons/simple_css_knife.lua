@@ -54,8 +54,8 @@ SWEP.ChargeOffset = {
 	Ang = Angle(5, -30, 0)
 }
 
-function SWEP:OnDeploy()
-	BaseClass.OnDeploy(self)
+function SWEP:Deploy()
+	BaseClass.Deploy(self)
 
 	self:EmitSound("Weapon_Knife.Deploy")
 end
