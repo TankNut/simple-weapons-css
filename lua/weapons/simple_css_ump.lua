@@ -26,8 +26,8 @@ SWEP.Firemode = -1
 SWEP.Primary = {
 	Ammo = "SMG1",
 
-	ClipSize = 30,
-	DefaultClip = 60,
+	ClipSize = 25,
+	DefaultClip = 100,
 
 	Damage = 16,
 	Delay = 60 / 571,
