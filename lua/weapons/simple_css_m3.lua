@@ -26,8 +26,8 @@ SWEP.Firemode = 0
 SWEP.Primary = {
 	Ammo = "Buckshot",
 
-	ClipSize = 7,
-	DefaultClip = 7,
+	ClipSize = 8,
+	DefaultClip = 32,
 
 	Damage = 18,
 	Count = 6,
