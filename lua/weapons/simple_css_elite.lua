@@ -86,13 +86,17 @@ function SWEP:DoImpactEffect(tr, dmgtype)
 			return
 		end
 
-		local effect = EffectData()
+		local attachment = ent:GetAttachment(self:GetAltGun() and 2 or 1)
 
-		effect:SetScale(10000)
-		effect:SetOrigin(tr.HitPos)
-		effect:SetStart(ent:GetAttachment(self:GetAltGun() and 2 or 1).Pos)
-		effect:SetEntity(ent)
+		if attachment then
+			local effect = EffectData()
 
-		util.Effect("Tracer", effect)
+			effect:SetScale(10000)
+			effect:SetOrigin(tr.HitPos)
+			effect:SetStart(attachment.Pos)
+			effect:SetEntity(ent)
+
+			util.Effect("Tracer", effect)
+		end
 	end
 end
