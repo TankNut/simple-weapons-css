@@ -60,7 +60,7 @@ list.Add("NPCUsableWeapons", {class = "simple_css_usp", title = "Simple Weapons:
 function SWEP:SetupDataTables()
 	BaseClass.SetupDataTables(self)
 
-	self:AddNetworkVar("Bool", "Suppressed")
+	self:NetworkVar("Bool", "Suppressed")
 end
 
 function SWEP:CanAltFire()

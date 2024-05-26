@@ -53,7 +53,7 @@ SWEP.Primary = {
 function SWEP:SetupDataTables()
 	BaseClass.SetupDataTables(self)
 
-	self:AddNetworkVar("Bool", "AltGun")
+	self:NetworkVar("Bool", "AltGun")
 end
 
 function SWEP:TranslateWeaponAnim(act)
