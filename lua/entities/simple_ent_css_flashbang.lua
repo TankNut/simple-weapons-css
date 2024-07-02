@@ -1,20 +1,21 @@
 AddCSLuaFile()
 
+simple_weapons.Include("Convars.css")
+
 DEFINE_BASECLASS("simple_ent_grenade_base")
 
 ENT.Base = "simple_ent_grenade_base"
 
 ENT.Model = Model("models/weapons/w_eq_flashbang_thrown.mdl")
 
-local radius = 1500
 local damage = 4
-
-local falloff = damage / radius
 
 function ENT:Explode()
 	self:EmitSound("Flashbang.Explode")
 
 	local origin = self:GetPos() + Vector(0, 0, 1)
+	local radius = FlashRange:GetFloat()
+	local falloff = damage / radius
 
 	for _, v in pairs(player.GetAll()) do
 		local pos = v:EyePos()
@@ -37,7 +38,7 @@ function ENT:Explode()
 		end
 
 		local diff = origin - pos
-		local severity = damage - (diff):Length() * falloff
+		local severity = (damage - (diff):Length() * falloff) * FlashSeverity:GetFloat()
 
 		local dot = diff:GetNormalized():Dot(v:GetAimVector())
 
@@ -89,7 +90,9 @@ function ENT:Explode()
 			net.WriteTable(data)
 		net.Send(v)
 
-		if dist <= 1000 * 1000 then
+		local dspRange = radius / 3
+
+		if dist <= dspRange * dspRange then
 			v:SetDSP(35)
 		end
 	end
