@@ -17,8 +17,12 @@ function ENT:Explode()
 	local radius = FlashRange:GetFloat()
 	local falloff = damage / radius
 
-	for _, v in pairs(player.GetAll()) do
-		local pos = v:EyePos()
+	for _, ply in player.Iterator() do
+		if not ply:IsValid() then
+			continue
+		end
+
+		local pos = ply:EyePos()
 		local dist = pos:DistToSqr(origin)
 
 		if dist > radius * radius then
@@ -33,18 +37,18 @@ function ENT:Explode()
 			collisiongroup = COLLISION_GROUP_NONE
 		})
 
-		if tr.Fraction < 1 and tr.Entity != v then
+		if tr.Fraction < 1 and tr.Entity != ply then
 			continue
 		end
 
-		if hook.Run("SimpleCanBeFlashed", v) == false then
+		if hook.Run("SimpleCanBeFlashed", ply) == false then
 			continue
 		end
 
 		local diff = origin - pos
 		local severity = (damage - (diff):Length() * falloff) * FlashSeverity:GetFloat()
 
-		local dot = diff:GetNormalized():Dot(v:GetAimVector())
+		local dot = diff:GetNormalized():Dot(ply:GetAimVector())
 
 		local fadeTime = 0
 		local fadeHold = 0
@@ -64,40 +68,40 @@ function ENT:Explode()
 
 		local curTime = CurTime()
 
-		local oldUntil = v.sw_blindUntilTime or 0
+		local oldUntil = ply.sw_blindUntilTime or 0
 		local data = {}
 
-		v.sw_blindUntilTime = math.max(curTime + fadeHold + 0.5 * fadeTime)
-		v.sw_blindStartTime = curTime
+		ply.sw_blindUntilTime = math.max(curTime + fadeHold + 0.5 * fadeTime)
+		ply.sw_blindStartTime = curTime
 
 		fadeTime = fadeTime / 1.4
 
 		if curTime > oldUntil then
-			v.sw_flFlashDuration = fadeTime
-			data.m_flFlashDuration = v.sw_flFlashDuration
+			ply.sw_flFlashDuration = fadeTime
+			data.m_flFlashDuration = ply.sw_flFlashDuration
 
-			v.sw_flFlashMaxAlpha = alpha
-			data.m_flFlashMaxAlpha = v.sw_flFlashMaxAlpha
+			ply.sw_flFlashMaxAlpha = alpha
+			data.m_flFlashMaxAlpha = ply.sw_flFlashMaxAlpha
 		else
-			local remaining = oldUntil + v.sw_flFlashDuration - curTime
+			local remaining = oldUntil + ply.sw_flFlashDuration - curTime
 
-			v.sw_flFlashDuration = math.max(remaining, fadeTime)
-			data.m_flFlashDuration = v.sw_flFlashDuration
+			ply.sw_flFlashDuration = math.max(remaining, fadeTime)
+			data.m_flFlashDuration = ply.sw_flFlashDuration
 
-			v.sw_flFlashMaxAlpha = math.max(v.sw_flFlashMaxAlpha, alpha)
-			data.m_flFlashMaxAlpha = v.sw_flFlashMaxAlpha
+			ply.sw_flFlashMaxAlpha = math.max(ply.sw_flFlashMaxAlpha, alpha)
+			data.m_flFlashMaxAlpha = ply.sw_flFlashMaxAlpha
 		end
 
 		net.Start("simple_ent_css_flashbang")
 			net.WriteUInt(self:EntIndex(), 16)
 			net.WriteVector(self:GetPos())
 			net.WriteTable(data)
-		net.Send(v)
+		net.Send(ply)
 
 		local dspRange = radius / 3
 
 		if dist <= dspRange * dspRange then
-			v:SetDSP(35)
+			ply:SetDSP(35)
 		end
 	end
 
