@@ -1,5 +1,4 @@
-local FADE_START = 15
-local FADE_END = 20
+simple_weapons.Include("Convars.css")
 
 local ROTATION_SPEED = 0.1
 
@@ -80,6 +79,9 @@ local maxColor = Vector(0.6, 0.6, 0.6)
 
 function EFFECT:Think()
 	local lifetime = CurTime() - self.StartTime
+
+	local FADE_START = SmokeDuration:GetFloat()
+	local FADE_END = FADE_START + SmokeFade:GetFloat()
 
 	if lifetime < FADE_START then
 		self.FadeAlpha = 1
