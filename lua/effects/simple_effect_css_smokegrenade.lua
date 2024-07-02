@@ -78,39 +78,43 @@ local minColor = Vector(0.5, 0.5, 0.5)
 local maxColor = Vector(0.6, 0.6, 0.6)
 
 function EFFECT:Think()
-	local lifetime = CurTime() - self.StartTime
+	local entTable = self:GetTable()
+
+	local lifetime = CurTime() - entTable.StartTime
 
 	local FADE_START = SmokeDuration:GetFloat()
 	local FADE_END = FADE_START + SmokeFade:GetFloat()
 
 	if lifetime < FADE_START then
-		self.FadeAlpha = 1
+		entTable.FadeAlpha = 1
 	elseif lifetime < FADE_END then
 		local fade = (lifetime - FADE_START) / (FADE_END - FADE_START)
 
-		self.FadeAlpha = math.cos(fade * 3.14159) * 0.5 + 0.5;
+		entTable.FadeAlpha = math.cos(fade * 3.14159) * 0.5 + 0.5;
 	else
 		return false
 	end
 
-	self.FadeAlpha = self.FadeAlpha * self.ExpandRadius / (self.SpacingRadius * 2)
+	entTable.FadeAlpha = entTable.FadeAlpha * entTable.ExpandRadius / (entTable.SpacingRadius * 2)
 
-	self.ExpandTime = math.min(lifetime, SMOKESPHERE_EXPAND_TIME)
-	self.ExpandRadius = (self.SpacingRadius * 2) * math.sin(self.ExpandTime * math.pi * 0.5 / SMOKESPHERE_EXPAND_TIME)
+	entTable.ExpandTime = math.min(lifetime, SMOKESPHERE_EXPAND_TIME)
+	entTable.ExpandRadius = (entTable.SpacingRadius * 2) * math.sin(entTable.ExpandTime * math.pi * 0.5 / SMOKESPHERE_EXPAND_TIME)
 
-	for k, v in pairs(self.Particles) do
+	local pos = self:GetPos()
+
+	for k, v in pairs(entTable.Particles) do
 		v:SetLifeTime(0)
 
 		local len = v.StoredPos:Length()
 		local rand = Vector(util.SharedRandom(k, -1, 1, 1), util.SharedRandom(k, -1, 1, 2), util.SharedRandom(k, -1, 1, 3))
 
-		if len > self.ExpandRadius * 0.5 then
-			v:SetPos(self:GetPos() + v.RandOffset + (v.StoredPos * (self.ExpandRadius * 0.5)) / len + rand)
+		if len > entTable.ExpandRadius * 0.5 then
+			v:SetPos(pos + v.RandOffset + (v.StoredPos * (entTable.ExpandRadius * 0.5)) / len + rand)
 		else
-			v:SetPos(self:GetPos() + v.RandOffset + v.StoredPos + rand)
+			v:SetPos(pos + v.RandOffset + v.StoredPos + rand)
 		end
 
-		local alpha = 1 - len / self.ExpandRadius
+		local alpha = 1 - len / entTable.ExpandRadius
 
 		if alpha > 0.3 then
 			alpha = 1
@@ -118,7 +122,7 @@ function EFFECT:Think()
 			alpha = alpha / 0.3
 		end
 
-		alpha = math.min(math.abs(alpha * self.FadeAlpha), 1)
+		alpha = math.min(math.abs(alpha * entTable.FadeAlpha), 1)
 
 		v:SetStartAlpha(alpha * 255)
 
@@ -129,14 +133,14 @@ function EFFECT:Think()
 		v:SetColor(color.x * 255, color.y * 255, color.z * 255)
 	end
 
-	local dist = EyePos():Distance(self:GetPos());
-	local core = self.ExpandRadius * 0.3
+	local dist = EyePos():Distance(pos)
+	local core = entTable.ExpandRadius * 0.3
 
-	if dist < self.ExpandRadius then
+	if dist < entTable.ExpandRadius then
 		if dist < core then
-			simple_weapons.SmokeOverlay = simple_weapons.SmokeOverlay + self.FadeAlpha
+			simple_weapons.SmokeOverlay = simple_weapons.SmokeOverlay + entTable.FadeAlpha
 		else
-			simple_weapons.SmokeOverlay = simple_weapons.SmokeOverlay + (1 - (dist - core) / (self.ExpandRadius - core)) * self.FadeAlpha
+			simple_weapons.SmokeOverlay = simple_weapons.SmokeOverlay + (1 - (dist - core) / (entTable.ExpandRadius - core)) * entTable.FadeAlpha
 		end
 	end
 
