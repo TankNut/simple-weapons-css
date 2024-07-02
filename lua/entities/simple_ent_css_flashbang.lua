@@ -37,6 +37,10 @@ function ENT:Explode()
 			continue
 		end
 
+		if hook.Run("SimpleCanBeFlashed", v) == false then
+			continue
+		end
+
 		local diff = origin - pos
 		local severity = (damage - (diff):Length() * falloff) * FlashSeverity:GetFloat()
 
