@@ -58,6 +58,8 @@ function SWEP:Deploy()
 	BaseClass.Deploy(self)
 
 	self:EmitSound("Weapon_Knife.Deploy")
+
+	return true
 end
 
 function SWEP:PlayAttackSound(heavy, hit, trace)
